@@ -129,9 +129,9 @@ class Course():
                     downloaded_filenames.add(name)
                 sleep(DOWNLOAD_WAIT_TIME) # Be polite and give moodle a breather between downloads
         self.__write_log__(downloaded_filenames)
-                
 
-
+    def get_name(self):
+        return self.__name            
 
 if __name__ == "__main__":
     url = input("enter url: ")
