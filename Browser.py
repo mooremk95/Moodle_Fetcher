@@ -99,7 +99,7 @@ class Browser():
 				url (string): URL of course page to fetch links from
 
 			Returns:
-				list: A list contining pairs of strings of the form (resource_name, url) where url is the url to the resource
+				dict: A dicitonary of filetype keys to lists contining pairs of strings of the form (resource_name, url) where url is the url to the resource
 			"""
 			links = []
 			i = 0
@@ -124,15 +124,17 @@ class Browser():
 					elif "pdf" in src:
 						return ".pdf"
 				return False
+
 			def get_name(link):
 				return link.find(name="span").text
-			link_list = []
+	
+			resource_dict = {".ppt": [], ".pdf": []}
 			for link in links:
 				ext = is_document(link)
-				if ext:
+				if ext: # Extension as the key in the dictionary of resource lists
 					name = get_name(link) + ext
-					link_list.append((name.replace(" ", "_"), link["href"]))
-			return link_list
+					resource_dict[ext].append((name.replace(" ", "_"), link["href"]))
+			return resource_dict
 
 	def fetch_courses(self):
 		"""fetches the courses from the moodle homepage of a logged in user. Generates a list of pairs of (course_name, url)
