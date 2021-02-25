@@ -83,7 +83,7 @@ class Browser():
 				continue
 			sleep(WAIT_TIME)
 			if self.__verify_login__():
-				print("Seccessful login")
+				print("Sucessful login")
 				break
 			print("Ooops, invalid login. Try again")
 		# Once logged in set the session property
@@ -133,7 +133,7 @@ class Browser():
 				ext = is_document(link)
 				if ext: # Extension as the key in the dictionary of resource lists
 					name = get_name(link) + ext
-					resource_dict[ext].append((name.replace(" ", "_"), link["href"]))
+					resource_dict[ext].append((name.replace(" - ", "-").replace(" ", "_"), link["href"]))
 			return resource_dict
 
 	def fetch_courses(self):
